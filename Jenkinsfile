@@ -10,7 +10,7 @@ node {
   }
   stage('Git Secrets') {
     // Run Trufflehog
-    sh ' trufflehog https://github.com/AO-partners/DVWA.git --json' || true
+    sh 'sudo trufflehog https://github.com/AO-partners/DVWA.git --json || true'
   }
     
   
