@@ -16,7 +16,7 @@ node {
   
   stage ('DAST Analysis') {
       sshagent(['zap']) {
-         sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t https://aopartnersdev.com.ng/devsecops/ || true '
+         sh 'sudo docker run -t owasp/zap2docker-stable zap-baseline.py -t https://aopartnersdev.com.ng/devsecops/ || true '
       }
     }
 }
