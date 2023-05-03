@@ -8,4 +8,15 @@ node {
       sh "${scannerHome}/bin/sonar-scanner"
     }
   }
+  stage('Git Secrets') {
+    // Run Trufflehog
+    sh ' trufflehog https://github.com/AO-partners/DVWA.git --json'
+  }
+    
+  
+  stage ('DAST Analysis') {
+      sshagent(['zap']) {
+         sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t https://aopartnersdev.com.ng/devsecops/ || true '
+      }
+    }
 }
